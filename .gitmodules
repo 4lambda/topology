@@ -1,0 +1,3 @@
+[submodule "vvvvv"]
+	path = vvvvv
+	url = git@github.com:rustydb/4l-infra.git
