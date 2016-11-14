@@ -2,13 +2,13 @@
 - name:
   linode:
     api_key: "{{ api_key }}"
-    name: "{{ ?host? }}"
+    name: "{{ ansible_hostname }}"
     linode_id: 12345678
     plan: 1
     datacenter: 2
     distribution: 99
     password: "{{ password }}"
-    ssh_pub_key: 'ssh-rsa qwerty'
+    ssh_pub_key: "{{ ssh.public }}"
     swap: 768
     wait: yes
     wait_timeout: 600
