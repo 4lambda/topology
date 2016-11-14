@@ -1,2 +1,7 @@
 ---
-- name: Sets
+- hosts: dallas
+  remote_user: root
+  vars_files:
+    - ../vvvvv/linode.yaml
+  roles:
+    - linode

@@ -1,2 +1,3 @@
 ---
-- include: web
+- include: machines.yaml
+- include: docker_containers.yaml

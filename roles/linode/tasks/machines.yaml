@@ -1,15 +1,15 @@
 ---
-- name:
-  linode:
-    api_key: "{{ api_key }}"
-    name: "{{ ansible_hostname }}"
-    linode_id: 12345678
-    plan: 1
-    datacenter: 2
-    distribution: 99
-    password: "{{ password }}"
-    ssh_pub_key: "{{ ssh.public }}"
-    swap: 768
-    wait: yes
-    wait_timeout: 600
-    state: present
+- name: Setup Hosts.
+  local_action:
+     module: linode
+     api_key: "{{ api_key }}"
+     name: "{{ ansible_hostname }}"
+     plan: "{{ plan }}"
+     datacenter: "{{ datacenter }}"
+     distribution: "{{ distribution  }}"
+     password: "{{ password }}"
+     ssh_pub_key: "{{ ssh.public }}"
+     swap: 768
+     wait: yes
+     wait_timeout: 600
+     state: present
