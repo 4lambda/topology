@@ -1,0 +1,2 @@
+linode-python<=2.0
+pycurl<=7.50
