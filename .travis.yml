@@ -9,6 +9,3 @@ install:
 script:
   - ansible-lint *.yaml
   - ansible-lint roles/
-notifications:
-  email:
-    - rusty@4lambda.io
