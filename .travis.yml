@@ -2,6 +2,9 @@ language: python
 python: "2.7"
 before_install:
   - sudo apt-get update
-  - sudo apt-get install libcurl4-gnutls-dev python2.7-dev librtmp-dev
+  - sudo apt-get install libcurl4-gnutls-dev
 install:
   - pip install -r requirements.txt
+script:
+  - ansible-lint *.yaml
+  - ansible-lint roles/
