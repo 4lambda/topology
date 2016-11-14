@@ -1,0 +1,7 @@
+[dallas]
+4l-[01:01].4lambda.io plan=1 swap=768
+
+[dallas:vars]
+datacenter=2
+
+
