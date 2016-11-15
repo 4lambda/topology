@@ -3,13 +3,13 @@
   local_action:
      module: linode
      api_key: "{{ api_key }}"
-     name: "{{ ansible_hostname }}"
+     name: "{{ inventory_hostname }}"
      plan: "{{ plan }}"
+     linode_id: "{{ lid }}"
      datacenter: "{{ datacenter }}"
-     distribution: "{{ distribution  }}"
+     distribution: "{{ distribution }}"
      password: "{{ password }}"
      ssh_pub_key: "{{ ssh.public }}"
-     swap: 768
+     swap: "{{ swap }}"
      wait: yes
-     wait_timeout: 600
      state: present
