@@ -1,5 +1,0 @@
-[dallas]
-4l00 plan=1 swap=768 lid=2473811
-
-[dallas:vars]
-datacenter=2
