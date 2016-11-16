@@ -15,6 +15,27 @@
      state: present
   when: inventory_hostname not in groups['loads']
 
-- name: Set hosts' hostnames.
+- name: Hosts have hostnames.
   hostname:
     name: "{{ inventory_hostname_short }}"
+
+- name: Chicago Timezone.
+  timezone:
+    name: America/Chicago
+
+- name: Hosts use Google DNS.
+  blockinfile:
+    dest: /etc/sysconfig/network-scripts/ifcfg-eth0
+    block: |
+      DNS1=8.8.8.8
+      DNS2=8.8.4.4
+      DOMAIN=.4lambda.io
+    insertafter: EOF
+  register: result
+
+- name: Restart Interfaces.
+  systemd:
+    name: network
+    state: restarted
+    daemon_reload: yes
+  when: result == 'changed'
