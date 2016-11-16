@@ -1,9 +1,9 @@
 ---
-- name: Setup Hosts.
+- name: Ensure hosts are up.
   local_action:
      module: linode
      api_key: "{{ api_key }}"
-     name: "{{ inventory_hostname }}"
+     name: "{{ inventory_hostname_short }}"
      plan: "{{ plan }}"
      linode_id: "{{ lid }}"
      datacenter: "{{ datacenter }}"
@@ -13,3 +13,8 @@
      swap: "{{ swap }}"
      wait: yes
      state: present
+  when: inventory_hostname not in groups['loads']
+
+- name: Set hosts' hostnames.
+  hostname:
+    name: "{{ inventory_hostname_short }}"
