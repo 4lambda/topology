@@ -1,0 +1,7 @@
+---
+- name: Ensure docker group is present.
+- name: Ensure drun user is present and in docker group.
+- name: Ensure docker's repo is available.
+- name: Ensure docker-engine is installed.
+- name: Ensure docker.service is enabled.
+- name: Ensure docker daemon is running now and at boot.
