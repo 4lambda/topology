@@ -88,5 +88,9 @@ ENV/
 # Rope project settings
 .ropeproject
 
-# VVVVV
-vvvvv
+# Ansible
+*.retry
+
+# IDE.
+*.swp
+.idea/
