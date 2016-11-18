@@ -1,10 +1,4 @@
 ---
-- name: Get latest packages.
-  yum:
-    name: '*'
-    state: latest
-    update_cache: yes
-
 - name: Ensure docker group is present.
   group:
     name: docker
