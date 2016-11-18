@@ -1,7 +1,54 @@
 ---
+- name: Get latest packages.
+  yum:
+    name: '*'
+    state: latest
+    update_cache: yes
+
 - name: Ensure docker group is present.
+  group:
+    name: docker
+    state: present
+    gid: 1900
+
+- name: Ensure lambda group is present.
+  group:
+    name: lambda
+    state: present
+    gid: 4444
+
+- name: Ensure 4l area exists.
+  file:
+    mode: 0750
+    group: lambda
+    path: /var/4l
+    state: directory
+
 - name: Ensure drun user is present and in docker group.
+  user:
+    name: drun
+    state: present
+    groups: docker,lambda
+    home: /var/4l/drun
+    createhome: yes
+    uid: 190
+
 - name: Ensure docker's repo is available.
+  yum_repository:
+    name: dockerrepo
+    description: Docker Repository
+    baseurl: https://yum.dockerproject.org/repo/main/centos/7/
+    gpgkey: https://yum.dockerproject.org/gpg
+    gpgcheck: yes
+    enabled: yes
+
 - name: Ensure docker-engine is installed.
+  yum:
+    name: docker-engine
+    state: present
+
 - name: Ensure docker.service is enabled.
-- name: Ensure docker daemon is running now and at boot.
+  systemd:
+    name: docker.service
+    state: started
+    enabled: yes
