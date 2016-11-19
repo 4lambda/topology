@@ -27,6 +27,11 @@
     createhome: yes
     uid: 190
 
+- name: EPEL is provided.
+  yum:
+    name: epel-release
+    state: present
+
 - name: Ensure docker's repo is available.
   yum_repository:
     name: dockerrepo
@@ -36,10 +41,14 @@
     gpgcheck: yes
     enabled: yes
 
-- name: Ensure docker-engine is installed.
+- name: Ensure docker-engine and pip are installed.
   yum:
-    name: docker-engine
+    name: "{{ item }}"
     state: present
+    update_cache: yes
+  with_items:
+    - docker-engine
+    - python-pip
 
 - name: Ensure docker.service is enabled.
   systemd:
