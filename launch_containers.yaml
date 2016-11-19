@@ -1,0 +1,8 @@
+---
+- hosts: dallas
+  remote_user: root
+  gather_facts: False
+  vars_files:
+    - ../vvvvv/linode.yaml
+  roles:
+    - docker

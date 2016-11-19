@@ -1,0 +1,10 @@
+---
+- name: Launch Container(s).
+  become: drun
+  docker:
+    name: "{{ item.name }}"
+    image: "{{ item.image }}"
+    state: started
+    pull: always
+    ports: "{{ item.port_maps }}"
+  with_items: "{{ containers }}"

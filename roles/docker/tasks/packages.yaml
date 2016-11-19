@@ -1,0 +1,7 @@
+---
+- name: Install docker-py with pip.
+  pip:
+    name: '{{ item }}'
+    state: present
+  with_items:
+    - 'docker-py==1.2.3'
