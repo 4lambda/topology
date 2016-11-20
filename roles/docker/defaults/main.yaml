@@ -1,6 +1,6 @@
 ---
 containers:
-  - name: www4l
-    image: rustydb/www4l
+  - name: 4l-web
+    image: rustydb/4l-web
     port_maps:
       - "80:80/tcp"
