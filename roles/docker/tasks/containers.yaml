@@ -4,7 +4,7 @@
   docker:
     name: "{{ item.name }}"
     image: "{{ item.image }}"
-    state: started
+    state: reloaded
     pull: always
     ports: "{{ item.port_maps }}"
   with_items: "{{ containers }}"
