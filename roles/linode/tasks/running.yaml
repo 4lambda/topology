@@ -23,7 +23,7 @@
     name: drun
     state: present
     groups: docker,lambda
-    home: /var/4l/drun
+    home: /home/drun
     createhome: yes
     uid: 190
 

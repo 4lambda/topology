@@ -1,0 +1,26 @@
+---
+- name: Write SSL key files.
+  file:
+    mode: 0750
+    group: lambda
+    path: /etc/pki/4l/private
+    state: directory
+  when: inventory_hostname in groups['web']
+
+- name: Add bundle.
+  copy:
+    content: "{{ ssl.bundle }}"
+    dest: /etc/pki/4l/www_4lambda_io.crt
+    group: lambda
+    mode: 644
+    owner: fourla
+  when: inventory_hostname in groups['web']
+
+- name: Add key.
+  copy:
+    content: "{{ ssl.key }}"
+    dest: /etc/pki/4l/private/server.key
+    group: lambda
+    mode: 644
+    owner: fourla
+  when: inventory_hostname in groups['web']

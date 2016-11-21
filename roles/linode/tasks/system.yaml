@@ -39,3 +39,12 @@
     state: restarted
     daemon_reload: yes
   when: result == 'changed'
+
+- name: Ensure basic fourla user exists.
+  user:
+    name: fourla
+    state: present
+    groups: lambda
+    home: /var/4l
+    createhome: yes
+    uid: 191
