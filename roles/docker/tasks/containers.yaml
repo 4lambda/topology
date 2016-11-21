@@ -8,4 +8,5 @@
     pull: always
     ports: "{{ item.port_maps }}"
     volumes: "{{ item.volumes }}"
+    restart_policy: on-failure
   with_items: "{{ containers }}"
