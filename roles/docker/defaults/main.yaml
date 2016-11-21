@@ -1,7 +1,7 @@
 ---
 containers:
   - name: 4l-web
-    image: rustydb/4l-web
+    image: 4lambda/4l-web
     port_maps:
       - "80:80/tcp"
       - "443:443/tcp"
