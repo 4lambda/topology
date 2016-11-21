@@ -12,7 +12,7 @@
     content: "{{ ssl.crt }}"
     dest: /etc/pki/4l/www_4lambda_io.crt
     group: lambda
-    mode: 644
+    mode: 0644
     owner: fourla
   when: inventory_hostname in groups['web']
 
@@ -21,6 +21,6 @@
     content: "{{ ssl.key }}"
     dest: /etc/pki/4l/private/server.key
     group: lambda
-    mode: 644
+    mode: 0644
     owner: fourla
   when: inventory_hostname in groups['web']
