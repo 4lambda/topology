@@ -7,9 +7,9 @@
     state: directory
   when: inventory_hostname in groups['web']
 
-- name: Add bundle.
+- name: Add crt.
   copy:
-    content: "{{ ssl.bundle }}"
+    content: "{{ ssl.crt }}"
     dest: /etc/pki/4l/www_4lambda_io.crt
     group: lambda
     mode: 644
