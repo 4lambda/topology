@@ -10,3 +10,16 @@
     volumes: "{{ item.volumes }}"
     restart_policy: on-failure
   with_items: "{{ containers }}"
+
+- name: Set systemd Service File(s).
+  template:
+    src: docker-x.service
+    dest:  "/etc/systemd/system/docker-{{ item.name }}.service"
+  with_items: "{{ containers }}"
+
+- name: Enable systemd Service File(s).
+  systemd:
+    name: "docker-{{ item.name }}.service"
+    state: started
+    enabled: yes
+  with_items: "{{ containers }}"
