@@ -7,4 +7,5 @@
     state: reloaded
     pull: always
     ports: "{{ item.port_maps }}"
+    volumes: "{{ item.volumes }}"
   with_items: "{{ containers }}"

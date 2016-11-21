@@ -4,3 +4,6 @@ containers:
     image: rustydb/4l-web
     port_maps:
       - "80:80/tcp"
+      - "443:443/tcp"
+    volumes:
+      - "/etc/pki/4l:/etc/pki/4l:ro"
