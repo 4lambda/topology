@@ -14,13 +14,14 @@ RUN  apt-key adv --keyserver keyserver.ubuntu.com --recv C0A52C50 \
     && apt-key adv --keyserver keyserver.ubuntu.com --recv 7F0CEB10
 
 # Install UniFi.
-RUN apt-get -q update && \
-    apt-get install -qy --no-install-recommends unifi && \
-    apt-get -q clean && \
-    rm -rf /var/lib/apt/lists/*
+RUN apt-get -q update \
+    && apt-get install -qy unifi prelink \
+    && apt-get -q clean \
+    && rm -rf /var/lib/apt/lists/*
 
 # Setup UniFi.
 RUN ln -s /var/lib/unifi /usr/lib/unifi/data
+RUN execstack -c /usr/lib/unifi/lib/native/Linux/amd64/libubnt_webrtc_jni.so
 EXPOSE 8080/tcp 8081/tcp 8443/tcp 8843/tcp 8880/tcp 3478/udp
 WORKDIR /var/lib/unifi
 
