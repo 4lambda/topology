@@ -1,0 +1,20 @@
+DEVICE="eth0"
+BOOTPROTO="static"
+ONBOOT="yes"
+IPV6INIT="yes"
+IPV6_AUTOCONF="yes"
+NM_CONTROLLED="no"
+PEERDNS="no"
+
+GATEWAY={{ gateway }}
+
+IPADDR0={{ ansible_host }}
+PREFIX0="24"
+
+IPADDR1={{ private_v4 }}
+PREFIX1="17"
+
+DOMAIN="members.linode.com 4lambda.io"
+
+DNS1=8.8.8.8
+DNS2=8.8.4.4

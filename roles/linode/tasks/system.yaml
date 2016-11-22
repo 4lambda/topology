@@ -23,14 +23,10 @@
   timezone:
     name: America/Chicago
 
-- name: Hosts use Google DNS.
-  blockinfile:
+- name: Setup ifcfg.
+  template:
+    src: ifcfg-ethx
     dest: /etc/sysconfig/network-scripts/ifcfg-eth0
-    block: |
-      DNS1=8.8.8.8
-      DNS2=8.8.4.4
-      DOMAIN=.4lambda.io
-    insertafter: EOF
   register: result_net
 
 - name: Restart Interfaces.
@@ -38,7 +34,7 @@
     name: network
     state: restarted
     daemon_reload: yes
-  when: result_net == 'changed'
+  when: result_net.changed
 
 - name: Ensure 4l users exist.
   user:
@@ -64,4 +60,4 @@
     name: ssh
     state: restarted
     daemon_reload: yes
-  when: result_ssh == 'changed'
+  when: result_ssh.changed
