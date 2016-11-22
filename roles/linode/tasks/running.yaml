@@ -41,7 +41,7 @@
     gpgcheck: yes
     enabled: yes
 
-- name: Ensure docker-engine and pip are installed.
+- name: Ensure wanted packages are installed.
   yum:
     name: "{{ item }}"
     state: present
@@ -49,9 +49,34 @@
   with_items:
     - docker-engine
     - python-pip
+    - iptables-services
 
 - name: Ensure docker.service is enabled.
   systemd:
     name: docker.service
     state: started
     enabled: yes
+
+- name: Disable firewalld
+  systemd:
+    name: firewalld
+    state: stopped
+    enabled: no
+
+- name: Copy firewall rules.
+  copy:
+    src: "{{ item }}"
+    dest: /etc/sysconfig/
+  with_items:
+    - iptables
+    - ip6tables
+
+- name: Restart iptables.
+  systemd:
+    name: "{{ item }}"
+    state: restarted
+    daemon_reload: yes
+    enabled: yes
+  with_items:
+    - iptables
+    - ip6tables

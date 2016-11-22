@@ -31,20 +31,37 @@
       DNS2=8.8.4.4
       DOMAIN=.4lambda.io
     insertafter: EOF
-  register: result
+  register: result_net
 
 - name: Restart Interfaces.
   systemd:
     name: network
     state: restarted
     daemon_reload: yes
-  when: result == 'changed'
+  when: result_net == 'changed'
 
-- name: Ensure basic fourla user exists.
+- name: Ensure 4l users exist.
   user:
-    name: fourla
+    name: "{{ item.name }}"
     state: present
-    groups: lambda
+    groups: "{{ item.groups }}"
+    password: "{{ item.passwd }}"
     home: /var/4l
-    createhome: yes
-    uid: 191
+    createhome: no
+    uid: "{{ item.uid }}"
+  with_items: "{{ users }}"
+
+- name: Disable password authentication.
+  lineinfile:
+    dest: /etc/ssh/sshd_config
+    state: present
+    regexp: '^PasswordAuthentication'
+    line: 'PasswordAuthentication no'
+  register: result_ssh
+
+- name: Restart sshd.
+  systemd:
+    name: ssh
+    state: restarted
+    daemon_reload: yes
+  when: result_ssh == 'changed'
