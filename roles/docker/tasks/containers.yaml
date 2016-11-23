@@ -9,7 +9,6 @@
     ports: "{{ item.port_maps }}"
     volumes: "{{ item.volumes }}"
     restart_policy: on-failure
-  when: item.group in groups
   with_items: "{{ containers }}"
 
 - name: Set systemd Service File(s).

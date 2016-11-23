@@ -3,9 +3,9 @@
   file:
     mode: 0750
     group: lambda
+    owner: fourla
     path: /etc/pki/4l/private
     state: directory
-  when: inventory_hostname in groups['web']
 
 - name: Add crt.
   copy:
@@ -14,7 +14,6 @@
     group: lambda
     mode: 0644
     owner: fourla
-  when: inventory_hostname in groups['web']
 
 - name: Add key.
   copy:
@@ -23,4 +22,3 @@
     group: lambda
     mode: 0644
     owner: fourla
-  when: inventory_hostname in groups['web']

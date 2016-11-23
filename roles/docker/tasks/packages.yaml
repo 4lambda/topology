@@ -1,7 +1,24 @@
 ---
+- name: Docker service daemon directory exists.
+  file:
+    mode: 0755
+    path: /etc/systemd/system/docker.service.d
+    state: directory
+
+- name: Disable iptables manipulation.
+  copy:
+    src: noiptables.conf
+    dest: /etc/systemd/system/docker.service.d/
+
 - name: Install docker-py with pip.
   pip:
     name: '{{ item }}'
     state: present
   with_items:
     - 'docker-py==1.2.3'
+
+- name: Ensure docker.service is enabled.
+  systemd:
+    name: docker.service
+    state: started
+    enabled: yes

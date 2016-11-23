@@ -1,5 +1,5 @@
 ---
-- hosts: linode
+- hosts: datacenters
   remote_user: root
   gather_facts: False
   vars_files:

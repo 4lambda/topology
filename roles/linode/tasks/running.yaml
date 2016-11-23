@@ -18,15 +18,6 @@
     path: /var/4l
     state: directory
 
-- name: Ensure drun user is present and in docker group.
-  user:
-    name: drun
-    state: present
-    groups: docker,lambda
-    home: /home/drun
-    createhome: yes
-    uid: 190
-
 - name: EPEL is provided.
   yum:
     name: epel-release
@@ -50,12 +41,6 @@
     - docker-engine
     - python-pip
     - iptables-services
-
-- name: Ensure docker.service is enabled.
-  systemd:
-    name: docker.service
-    state: started
-    enabled: yes
 
 - name: Disable firewalld
   systemd:

@@ -13,7 +13,6 @@
      swap: "{{ swap }}"
      wait: yes
      state: present
-  when: inventory_hostname not in groups['loads']
 
 - name: Hosts have hostnames.
   hostname:
@@ -35,8 +34,8 @@
     state: present
     groups: "{{ item.groups }}"
     password: "{{ item.passwd }}"
-    home: /var/4l
-    createhome: no
+    home: "{{ item.home }}"
+    createhome: "{{ item.createhome }}"
     uid: "{{ item.uid }}"
   with_items: "{{ users }}"
 
