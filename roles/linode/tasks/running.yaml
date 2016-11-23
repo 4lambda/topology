@@ -70,13 +70,3 @@
   with_items:
     - iptables
     - ip6tables
-
-- name: Restart iptables.
-  systemd:
-    name: "{{ item }}"
-    state: restarted
-    daemon_reload: yes
-    enabled: yes
-  with_items:
-    - iptables
-    - ip6tables
