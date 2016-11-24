@@ -7,6 +7,13 @@
 
 - name: IP
   systemd:
+    name: iptables
+    state: restarted
+    enabled: yes
+    daemon_reload: yes
+
+- name: NETWORK
+  systemd:
     name: network
     state: restarted
     daemon_reload: yes

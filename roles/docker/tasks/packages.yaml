@@ -1,4 +1,5 @@
 ---
+<<<<<<< HEAD
 - name: Docker service daemon directory exists.
   file:
     mode: 0755
@@ -9,16 +10,46 @@
   copy:
     src: noiptables.conf
     dest: /etc/systemd/system/docker.service.d/
+=======
+- name: Ensure docker's repo is available.
+  yum_repository:
+    name: dockerrepo
+    description: Docker Repository
+    baseurl: https://yum.dockerproject.org/repo/main/centos/7/
+    gpgkey: https://yum.dockerproject.org/gpg
+    gpgcheck: yes
+    enabled: yes
+
+- name: Ensure docker-engine is installed.
+  yum:
+    name: docker-engine
+    state: present
+    update_cache: yes
+
+- name: Set custom docker service file.
+  copy:
+    src: docker.service
+    dest: /usr/lib/systemd/system/
+>>>>>>> b3427e8... Formatted and fixed organization shit
 
 - name: Install docker-py with pip.
   pip:
-    name: '{{ item }}'
+    name: 'docker-py==1.2.3'
     state: present
+<<<<<<< HEAD
   with_items:
     - 'docker-py==1.2.3'
+=======
+>>>>>>> b3427e8... Formatted and fixed organization shit
 
 - name: Ensure docker.service is enabled.
   systemd:
     name: docker.service
+<<<<<<< HEAD
     state: started
     enabled: yes
+=======
+    state: restarted
+    enabled: yes
+    daemon_reload: yes
+>>>>>>> b3427e8... Formatted and fixed organization shit

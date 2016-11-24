@@ -26,7 +26,7 @@
   template:
     src: ifcfg-ethx
     dest: /etc/sysconfig/network-scripts/ifcfg-eth0
-  notify: IP
+  notify: NETWORK
 
 - name: Ensure 4l users exist.
   user:

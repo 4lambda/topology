@@ -23,22 +23,12 @@
     name: epel-release
     state: present
 
-- name: Ensure docker's repo is available.
-  yum_repository:
-    name: dockerrepo
-    description: Docker Repository
-    baseurl: https://yum.dockerproject.org/repo/main/centos/7/
-    gpgkey: https://yum.dockerproject.org/gpg
-    gpgcheck: yes
-    enabled: yes
-
 - name: Ensure wanted packages are installed.
   yum:
     name: "{{ item }}"
     state: present
     update_cache: yes
   with_items:
-    - docker-engine
     - python-pip
     - iptables-services
 
@@ -55,3 +45,4 @@
   with_items:
     - iptables
     - ip6tables
+  notify: IP

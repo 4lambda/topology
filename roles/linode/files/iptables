@@ -5,7 +5,6 @@
 
 -A INPUT -i lo -j ACCEPT
 -A INPUT ! -i lo -s 127.0.0.0/8 -j REJECT
--A INPUT -s longview.linode.com -m state --state NEW -j ACCEPT
 -A INPUT -s 192.168.255.0/24 -m state --state NEW -j ACCEPT
 -A INPUT -p icmp -m state --state NEW --icmp-type 8 -j ACCEPT
 
