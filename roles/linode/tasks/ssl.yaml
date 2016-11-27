@@ -17,6 +17,7 @@
   with_items:
     - { name: www_4lambda_io.crt, ssl: "{{ ssl.crt }}" }
     - { name: www_4lambda_io.bundle, ssl: "{{ ssl.bundle }}" }
+    - { name: www_4lambda_io.p7b, ssl: "{{ ssl.bundle }}" }
 
 - name: Add key.
   copy:
