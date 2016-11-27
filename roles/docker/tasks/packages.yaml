@@ -1,16 +1,4 @@
 ---
-<<<<<<< HEAD
-- name: Docker service daemon directory exists.
-  file:
-    mode: 0755
-    path: /etc/systemd/system/docker.service.d
-    state: directory
-
-- name: Disable iptables manipulation.
-  copy:
-    src: noiptables.conf
-    dest: /etc/systemd/system/docker.service.d/
-=======
 - name: Ensure docker's repo is available.
   yum_repository:
     name: dockerrepo
@@ -30,26 +18,15 @@
   copy:
     src: docker.service
     dest: /usr/lib/systemd/system/
->>>>>>> b3427e8... Formatted and fixed organization shit
 
 - name: Install docker-py with pip.
   pip:
     name: "docker-py=={{ docker_py_version }}"
     state: present
-<<<<<<< HEAD
-  with_items:
-    - 'docker-py==1.2.3'
-=======
->>>>>>> b3427e8... Formatted and fixed organization shit
 
 - name: Ensure docker.service is enabled.
   systemd:
     name: docker.service
-<<<<<<< HEAD
-    state: started
-    enabled: yes
-=======
     state: restarted
     enabled: yes
     daemon_reload: yes
->>>>>>> b3427e8... Formatted and fixed organization shit
