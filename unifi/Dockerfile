@@ -22,7 +22,7 @@ RUN apt-get -q update \
 # Setup UniFi.
 RUN ln -s /var/lib/unifi /usr/lib/unifi/data
 RUN execstack -c /usr/lib/unifi/lib/native/Linux/amd64/libubnt_webrtc_jni.so
-EXPOSE 8080/tcp 8081/tcp 8443/tcp 8843/tcp 8880/tcp 3478/udp
+EXPOSE 8080/tcp 8081/tcp 8443/tcp 8843/tcp 8880/tcp
 WORKDIR /var/lib/unifi
 
 ENTRYPOINT ["/usr/bin/java", "-Xmx1024M", "-jar", "/usr/lib/unifi/lib/ace.jar"]
