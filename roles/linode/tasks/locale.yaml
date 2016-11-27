@@ -1,0 +1,27 @@
+---
+- name: Ensure system groups are present.
+  group:
+    name: "{{ item.name }}"
+    state: present
+    gid: "{{ item.gid }}"
+  with_items: "{{ system_groups }}"
+
+- name: Ensure 4l base areas exist.
+  file:
+    mode: 0750
+    group: "{{ item.group }}"
+    owner: "{{ item.owner }}"
+    path: "{{ item.path }}"
+    state: directory
+  with_items: "{{ directories }}"
+
+- name: Ensure 4l users exist.
+  user:
+    name: "{{ item.name }}"
+    state: present
+    groups: "{{ item.groups }}"
+    password: "{{ item.passwd }}"
+    home: "{{ item.home }}"
+    createhome: "{{ item.createhome }}"
+    uid: "{{ item.uid }}"
+  with_items: "{{ users }}"

@@ -1,4 +1,4 @@
 ---
 - include: system.yaml
-- include: running.yaml
+- include: locale.yaml
 - include: ssl.yaml

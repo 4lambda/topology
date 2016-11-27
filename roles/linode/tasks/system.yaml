@@ -28,17 +28,6 @@
     dest: /etc/sysconfig/network-scripts/ifcfg-eth0
   notify: NETWORK
 
-- name: Ensure 4l users exist.
-  user:
-    name: "{{ item.name }}"
-    state: present
-    groups: "{{ item.groups }}"
-    password: "{{ item.passwd }}"
-    home: "{{ item.home }}"
-    createhome: "{{ item.createhome }}"
-    uid: "{{ item.uid }}"
-  with_items: "{{ users }}"
-
 - name: Disable password authentication.
   lineinfile:
     dest: /etc/ssh/sshd_config
@@ -46,3 +35,32 @@
     regexp: '^PasswordAuthentication'
     line: 'PasswordAuthentication no'
   notify: SSHD
+
+- name: EPEL is provided.
+  yum:
+    name: epel-release
+    state: present
+
+- name: Ensure wanted packages are installed.
+  yum:
+    name: "{{ item }}"
+    state: present
+    update_cache: yes
+  with_items:
+    - python-pip
+    - iptables-services
+
+- name: Disable firewalld
+  systemd:
+    name: firewalld
+    state: stopped
+    enabled: no
+
+- name: Copy firewall rules.
+  copy:
+    src: "{{ item }}"
+    dest: /etc/sysconfig/
+  with_items:
+    - iptables
+    - ip6tables
+  notify: IP

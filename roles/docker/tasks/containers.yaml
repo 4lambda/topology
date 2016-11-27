@@ -10,7 +10,6 @@
     volumes: "{{ item.volumes }}"
     restart_policy: on-failure
   with_items: "{{ containers }}"
-  register: launched
 
 - name: Set systemd Service File(s).
   template:

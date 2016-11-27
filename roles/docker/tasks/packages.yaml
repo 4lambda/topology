@@ -34,7 +34,7 @@
 
 - name: Install docker-py with pip.
   pip:
-    name: 'docker-py==1.2.3'
+    name: "docker-py=={{ docker_py_version }}"
     state: present
 <<<<<<< HEAD
   with_items:
