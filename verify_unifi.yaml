@@ -6,8 +6,8 @@
     - ../vvvvv/infra_secrets.yaml
   vars:
     containers:
-      - name: unifi
-        image: 4lambda/unifi
+      - name: 4l-unifi
+        image: docker pull 4lambda/4l-unifi
         port_maps:
           - "8080:8080/tcp"
           - "8880:8880/tcp"
