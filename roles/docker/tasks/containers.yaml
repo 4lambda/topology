@@ -16,10 +16,4 @@
     src: docker-x.service
     dest:  "/etc/systemd/system/docker-{{ item.name }}.service"
   with_items: "{{ containers }}"
-
-- name: Enable systemd Service File(s) for containers.
-  systemd:
-    name: "docker-{{ item.name }}.service"
-    state: started
-    enabled: yes
-  with_items: "{{ containers }}"
+  notify: ENABLE CONTAINER

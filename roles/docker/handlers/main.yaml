@@ -1,0 +1,20 @@
+---
+- name: RESTART CONTAINER
+  docker:
+    name: "{{ item.name }}"
+    state: "{{ restarted }}"
+  with_items: "{{ containers }}"
+
+- name: ENABLE CONTAINER
+  systemd:
+    name: "docker-{{ item.name }}.service"
+    state: started
+    enabled: yes
+  with_items: "{{ containers }}"
+
+- name: RESTART SERVICE
+  systemd:
+    name: docker.service
+    state: restarted
+    enabled: yes
+    daemon_reload: yes

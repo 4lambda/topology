@@ -18,15 +18,9 @@
   copy:
     src: docker.service
     dest: /usr/lib/systemd/system/
+  notify: RESTART SERVICE
 
 - name: Install docker-py with pip.
   pip:
     name: "docker-py=={{ docker_py_version }}"
     state: present
-
-- name: Ensure docker.service is enabled.
-  systemd:
-    name: docker.service
-    state: restarted
-    enabled: yes
-    daemon_reload: yes
