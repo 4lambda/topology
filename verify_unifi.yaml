@@ -1,0 +1,23 @@
+---
+- hosts: unifi
+  remote_user: root
+  gather_facts: False
+  vars_files:
+    - ../vvvvv/infra_secrets.yaml
+  vars:
+    containers:
+      - name: unifi
+        image: 4lambda/unifi
+        port_maps:
+          - "8080:8080/tcp"
+          - "8880:8880/tcp"
+          - "8843:8843/tcp"
+          - "8443:8443/tcp"
+        volumes:
+          - "/opt/4l/unifi:/var/lib/unifi"
+          - "/opt/4l/unifi:/var/log/unifi"
+          - "/opt/4l/unifi:/var/run/unifi"
+          - "/opt/4l/unifi:/usr/lib/unifi/work"
+  roles:
+    - docker
+
