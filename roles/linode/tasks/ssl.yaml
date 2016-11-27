@@ -7,13 +7,16 @@
     path: /etc/pki/4l/private
     state: directory
 
-- name: Add crt.
+- name: Add certs.
   copy:
-    content: "{{ ssl.crt }}"
-    dest: /etc/pki/4l/www_4lambda_io.crt
+    content: "{{ item.ssl }}"
+    dest: "/etc/pki/4l/{{ item.name }}"
     group: lambda
     mode: 0644
     owner: fourla
+  with_items:
+    - { name: www_4lambda_io.crt, ssl: "{{ ssl.crt }}" }
+    - { name: www_4lambda_io.bundle, ssl: "{{ ssl.bundle }}" }
 
 - name: Add key.
   copy:
