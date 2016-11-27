@@ -1,0 +1,17 @@
+---
+- hosts: web
+  remote_user: root
+  gather_facts: False
+  vars_files:
+    - ../vvvvv/infra_secrets.yaml
+  vars:
+    containers:
+      - name: 4l-web
+        image: 4lambda/4l-web:v1.1.2
+        port_maps:
+          - "80:80/tcp"
+          - "443:443/tcp"
+        volumes:
+          - "/etc/pki/4l:/etc/pki/4l:ro"
+  roles:
+    - docker
