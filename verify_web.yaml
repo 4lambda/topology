@@ -7,7 +7,7 @@
   vars:
     containers:
       - name: 4l-web
-        image: 4lambda/4l-web:v1.1.2
+        image: 4lambda/4l-web:latest
         port_maps:
           - "80:80/tcp"
           - "443:443/tcp"
