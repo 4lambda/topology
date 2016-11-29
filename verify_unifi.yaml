@@ -18,14 +18,14 @@
           - "/opt/4l/unifi:/var/log/unifi"
           - "/opt/4l/unifi:/var/run/unifi"
           - "/opt/4l/unifi:/usr/lib/unifi/work"
-#          - "/etc/pki/4l:/etc/pki/4l:ro"
+          - "/etc/pki/4l:/etc/pki/4l:ro"
   roles:
     - docker
 
 # FIXME: ERR_SSL_PROTOCOL_ERROR
 #  tasks:
 #    - name: Setup SSL.
-#      command: docker exec "{{ item.name }}" bash -l -c 'cd /usr/lib/unifi && /usr/bin/java -jar lib/ace.jar import_cert /etc/pki/4l/www_4lambda_io.crt /etc/pki/4l/www_4lambda_io.bundle'
+#      command: docker exec "{{ item.name }}" bash -l -c 'cd /usr/lib/unifi && /usr/bin/java -jar lib/ace.jar import_cert /etc/pki/4l/www_4lambda_io.pem'
 #      args:
 #        chdir: /usr/lib/unifi
 #        creates: /usr/lib/unifi/data/keystore.before_import
