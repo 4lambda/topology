@@ -1,28 +1,24 @@
 ---
 - name: Write SSL key files.
   file:
-    mode: 0750
+    mode: 0500
     group: lambda
     owner: fourla
     path: /etc/pki/4l/private
     state: directory
 
 - name: Add certs.
-  copy:
-    content: "{{ item.ssl }}"
-    dest: "/etc/pki/4l/{{ item.name }}"
-    group: lambda
-    mode: 0644
+  template:
+    src: www_4lambda_io.pem
+    dest: /etc/pki/4l/
     owner: fourla
-  with_items:
-    - { name: www_4lambda_io.crt, ssl: "{{ ssl.crt }}" }
-    - { name: www_4lambda_io.bundle, ssl: "{{ ssl.bundle }}" }
-    - { name: www_4lambda_io.p7b, ssl: "{{ ssl.bundle }}" }
+    group: lambda
+    mode: 0400
 
 - name: Add key.
   copy:
     content: "{{ ssl.key }}"
     dest: /etc/pki/4l/private/server.key
     group: lambda
-    mode: 0644
+    mode: 0400
     owner: fourla
