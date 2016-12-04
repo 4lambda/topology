@@ -1,15 +1,22 @@
 ---
+- name: Ensure isolated network exists
+  become: drun
+  docker_network:
+    name: 4l_iso_nw
+    state: present
+
 - name: Launch Container(s).
   become: drun
-  docker:
-    name: "{{ item.name }}"
+  docker_container:
     env: "{{ item.env }}"
     image: "{{ item.image }}"
-    state: reloaded
-    pull: always
-    ports: "{{ item.port_maps }}"
-    volumes: "{{ item.volumes }}"
+    name: "{{ item.name }}"
+    networks: "{{ item.networks }}"
+    pull: true
+    published_ports: "{{ item.published_ports }}"
     restart_policy: on-failure
+    state: started
+    volumes: "{{ item.volumes }}"
   with_items: "{{ containers }}"
 
 - name: Set systemd Service File(s).

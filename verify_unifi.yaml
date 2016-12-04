@@ -6,13 +6,16 @@
     - ../vvvvv/infra_secrets.yaml
   vars:
     containers:
-      - name: 4l-unifi
-        env:
+      - env:
           CERT: /etc/pki/4l/www_4lambda_io.pem
           KEY: /etc/pki/4l/private/server.key
           PASSWORD: "{{ unifi_password }}"
-        image: 4lambda/unifi:v1.0.0
-        port_maps:
+        image: 4lambda/unifi:v1.0.0_5.2.9
+        name: unifi
+        network:
+          name: 4l_iso_nw
+          ipv4_address: 172.19.0.5
+        published_ports:
           - "8080:8080/tcp"
           - "8880:8880/tcp"
           - "8843:8843/tcp"
