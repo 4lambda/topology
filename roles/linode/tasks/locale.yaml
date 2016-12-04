@@ -25,3 +25,4 @@
     createhome: "{{ item.createhome }}"
     uid: "{{ item.uid }}"
   with_items: "{{ users }}"
+  no_log: True
