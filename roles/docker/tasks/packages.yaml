@@ -19,8 +19,3 @@
     src: docker.service
     dest: /usr/lib/systemd/system/
   notify: RESTART SERVICE
-
-- name: Install docker-py with pip.
-  pip:
-    name: docker-py>="{{ docker_py_min_version }}",<"{{ docker_py_max_version }}"
-    state: present
