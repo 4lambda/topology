@@ -11,7 +11,7 @@
         image: 4lambda/4l-web:v1.2.5
         name: 4l-web
         networks:
-          - name: 4l_iso_nw
+          - name: 4l_bridge
             ipv4_address: 172.19.1.10
         published_ports:
           - "80:80/tcp"

@@ -2,12 +2,14 @@
 - name: Ensure isolated network exists
   become: drun
   docker_network:
-    name: 4l_iso_nw
-    state: present
+    name: 4l_bridge
+    driver_options:
+      com.docker.network.bridge.name: 4l_bridge
     ipam_options:
       subnet: 172.19.1.0/16
       gateway: 172.19.1.1
       iprange: 172.19.1.0/24
+    state: present
 
 - name: Launch Container(s).
   become: drun

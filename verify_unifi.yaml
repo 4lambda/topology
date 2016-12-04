@@ -13,7 +13,7 @@
         image: 4lambda/unifi:v1.0.0_u5.2.9
         name: unifi
         networks:
-          - name: 4l_iso_nw
+          - name: 4l_bridge
             ipv4_address: 172.19.1.5
         published_ports:
           - "8080:8080/tcp"
