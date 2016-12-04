@@ -4,6 +4,7 @@
   docker_network:
     name: 4l_iso_nw
     state: present
+    subnet: 172.19.1.0/16
 
 - name: Launch Container(s).
   become: drun

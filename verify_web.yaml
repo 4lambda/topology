@@ -10,7 +10,7 @@
         name: 4l-web
         networks:
           - name: 4l_iso_nw
-            ipv4_address: 172.19.0.10
+            ipv4_address: 172.19.1.10
         port_maps:
           - "80:80/tcp"
         volumes:
