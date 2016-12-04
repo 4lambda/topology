@@ -19,3 +19,10 @@
     src: docker.service
     dest: /usr/lib/systemd/system/
   notify: RESTART SERVICE
+
+- name: Install docker-py with pip.
+  pip:
+    name: docker-py
+    version: 1.10.6
+    extra_args: --no-cache --upgrade
+    state: present
