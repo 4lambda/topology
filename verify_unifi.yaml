@@ -7,27 +7,19 @@
   vars:
     containers:
       - name: 4l-unifi
-        image: 4lambda/4l-unifi:v1.0.0
+        env:
+          CERT: /etc/pki/4l/www_4lambda_io.pem
+          KEY: /etc/pki/4l/private/server.key
+          PASSWORD: "{{ unifi_password }}"
+        image: 4lambda/unifi:v1.0.0
         port_maps:
           - "8080:8080/tcp"
           - "8880:8880/tcp"
           - "8843:8843/tcp"
           - "8443:8443/tcp"
         volumes:
-          - "/opt/4l/unifi:/var/lib/unifi"
-          - "/opt/4l/unifi:/var/log/unifi"
-          - "/opt/4l/unifi:/var/run/unifi"
-          - "/opt/4l/unifi:/usr/lib/unifi/work"
+          - "/opt/4l/unifi/data:/usr/lib/unifi/data"
+          - "/opt/4l/unifi/logs:/usr/lib/unifi/logs"
           - "/etc/pki/4l:/etc/pki/4l:ro"
   roles:
     - docker
-
-# FIXME: ERR_SSL_PROTOCOL_ERROR
-#  tasks:
-#    - name: Setup SSL.
-#      command: docker exec "{{ item.name }}" bash -l -c 'cd /usr/lib/unifi && /usr/bin/java -jar lib/ace.jar import_cert /etc/pki/4l/www_4lambda_io.pem'
-#      args:
-#        chdir: /usr/lib/unifi
-#        creates: /usr/lib/unifi/data/keystore.before_import
-#      notify: RESTART CONTAINER
-#      with_items: "{{ containers }}"

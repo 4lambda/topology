@@ -3,6 +3,7 @@
   become: drun
   docker:
     name: "{{ item.name }}"
+    env: "{{ item.env }}"
     image: "{{ item.image }}"
     state: reloaded
     pull: always
