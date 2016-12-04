@@ -6,7 +6,9 @@
     - ../vvvvv/infra_secrets.yaml
   vars:
     containers:
-      - image: 4lambda/4l-web:v1.2.4
+      - env:
+          FOO: bar
+        image: 4lambda/4l-web:v1.2.4
         name: 4l-web
         networks:
           - name: 4l_iso_nw
