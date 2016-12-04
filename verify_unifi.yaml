@@ -10,7 +10,7 @@
           CERT: /etc/pki/4l/www_4lambda_io.pem
           KEY: /etc/pki/4l/private/server.key
           PASSWORD: "{{ unifi_password }}"
-        image: 4lambda/unifi:v1.0.0_5.2.9
+        image: 4lambda/unifi:v1.0.0_u5.2.9
         name: unifi
         networks:
           - name: 4l_iso_nw
