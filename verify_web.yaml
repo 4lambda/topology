@@ -6,11 +6,13 @@
     - ../vvvvv/infra_secrets.yaml
   vars:
     containers:
-      - name: 4l-web
-        image: 4lambda/4l-web:v1.2.2
+      - image: 4lambda/4l-web:v1.2.2
+        name: 4l-web
+        networks:
+          - name: 4l_iso_nw
+            ipv4_address: 172.19.0.10
         port_maps:
           - "80:80/tcp"
-          - "443:443/tcp"
         volumes:
           - "/opt/4l/nginx/logs:/var/log/nginx"
           - "/etc/pki/4l:/etc/pki/4l:ro"
