@@ -11,7 +11,7 @@
         networks:
           - name: 4l_iso_nw
             ipv4_address: 172.19.1.10
-        port_maps:
+        published_ports:
           - "80:80/tcp"
         volumes:
           - "/opt/4l/nginx/logs:/var/log/nginx"
