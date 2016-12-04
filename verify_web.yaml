@@ -12,6 +12,7 @@
           - "80:80/tcp"
           - "443:443/tcp"
         volumes:
+          - "/opt/4l/nginx/logs:/var/log/nginx"
           - "/etc/pki/4l:/etc/pki/4l:ro"
   roles:
     - docker
