@@ -22,5 +22,5 @@
 
 - name: Install docker-py with pip.
   pip:
-    name: "docker-py=={{ docker_py_version }}"
+    name: docker-py>="{{ docker_py_min_version }}",<"{{ docker_py_max_version }}"
     state: present
