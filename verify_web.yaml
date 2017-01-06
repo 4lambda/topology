@@ -8,7 +8,7 @@
     containers:
       - env:
           FOO: bar
-        image: 4lambda/web:v1.2.9
+        image: registry.gitlab.com/4lambda/web:v1.3.0
         name: 4l-web
         networks:
           - name: 4l_bridge
