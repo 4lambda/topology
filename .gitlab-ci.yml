@@ -1,3 +1,18 @@
+check_kube_configs:
+  image: google/cloud-sdk
+  stage: test
+  only:
+    - master@4lambda/web
+    - master@4lambda/unifi
+  before_script:
+    - echo "$GCLOUD_KEY" > key.json
+    - gcloud auth activate-service-account --key-file key.json
+    - gcloud config set compute/zone "$GCE_ZONE"
+    - gcloud config set project "$GCLOUD_PROJECT"
+    - gcloud container clusters get-credentials "$GCLOUD_CLUSTER"
+  script:
+    - kubectl create -f roles/"$TARGET_PROJECT_NAME"/deployment.yaml --dry-run
+    - kubectl create -f roles/"$TARGET_PROJECT_NAME"/service.yaml --dry-run
 update_remote_image:
   image: google/cloud-sdk
   stage: deploy
