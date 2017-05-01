@@ -1,3 +1,3 @@
-# Topology Orchestration with Ansible
+# Topology Deployment
 
-Provides Ansible roles and playbooks for orchestrating the deployment of 4Lambda's infrastructure.
+Roles for various services and deployments on GCloud.
