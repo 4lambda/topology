@@ -1,8 +1,0 @@
----
-- hosts: datacenters
-  remote_user: root
-  gather_facts: False
-  vars_files:
-    - ../vvvvv/infra_secrets.yaml
-  roles:
-    - linode

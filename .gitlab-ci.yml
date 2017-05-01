@@ -1,0 +1,15 @@
+update_remote_image:
+  image: google/cloud-sdk
+  stage: deploy
+  only:
+    - master@4lambda/web
+    - master@4lambda/unifi
+  before_script:
+    - echo "$GCLOUD_KEY" > key.json
+    - gcloud auth activate-service-account --key-file key.json
+    - gcloud config set compute/zone "$GCE_ZONE"
+    - gcloud config set project "$GCLOUD_PROJECT"
+    - gcloud container clusters get-credentials "$GCLOUD_CLUSTER"
+  script:
+    - kubectl set image deployment/"$TARGET_PROJECT_NAME"-deployment "$TARGET_PROJECT_NAME=$GCLOUD_REGISTRY_IMAGE:TARGET_COMMIT_REF_NAME"
+
