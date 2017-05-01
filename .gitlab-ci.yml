@@ -1,4 +1,5 @@
 check_kube_configs:
+  allow_failure: true
   image: google/cloud-sdk
   stage: test
   before_script:
@@ -11,6 +12,7 @@ check_kube_configs:
     - kubectl create -f roles/"$TARGET_PROJECT_NAME"/deployment.yaml --dry-run
     - kubectl create -f roles/"$TARGET_PROJECT_NAME"/service.yaml --dry-run
 update_remote_image:
+  allow_failure: true
   image: google/cloud-sdk
   stage: deploy
   before_script:
