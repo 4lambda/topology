@@ -1,9 +1,6 @@
 check_kube_configs:
   image: google/cloud-sdk
   stage: test
-  only:
-    - master@4lambda/web
-    - master@4lambda/unifi
   before_script:
     - echo "$GCLOUD_KEY" > key.json
     - gcloud auth activate-service-account --key-file key.json
@@ -16,9 +13,6 @@ check_kube_configs:
 update_remote_image:
   image: google/cloud-sdk
   stage: deploy
-  only:
-    - master@4lambda/web
-    - master@4lambda/unifi
   before_script:
     - echo "$GCLOUD_KEY" > key.json
     - gcloud auth activate-service-account --key-file key.json
