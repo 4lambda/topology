@@ -22,5 +22,5 @@ update_remote_image:
     - gcloud config set project "$GCLOUD_PROJECT"
     - gcloud container clusters get-credentials "$GCLOUD_CLUSTER"
   script:
-    - kubectl set image deployment/"$TARGET_PROJECT_NAME"-deployment "$TARGET_PROJECT_NAME=$GCLOUD_REGISTRY_IMAGE:TARGET_COMMIT_REF_NAME"
+    - kubectl set image deployment/"$TARGET_PROJECT_NAME"-deployment "$TARGET_PROJECT_NAME=$GCLOUD_REGISTRY_IMAGE:$TARGET_COMMIT_REF_NAME"
 
