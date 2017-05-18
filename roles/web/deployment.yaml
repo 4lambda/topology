@@ -12,7 +12,7 @@ spec:
     spec:
       containers:
         - name: web
-          image: gcr.io/1765753713/web
+          image: gcr.io/1765753713/web:master
           ports:
             - containerPort: 80
               protocol: TCP
