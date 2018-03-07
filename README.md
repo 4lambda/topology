@@ -2,8 +2,21 @@
 
 Kubernetes/GCP Continuous Delivery files.
 
-## Roles
+## Applications:
 
-1. Website - `roles/web`
-2. UniFi - `roles/unifi`
+#### rancher
 
+A server application for managing Hosts (such as gameservers).
+
+#### unifi
+
+A UniFi controller for Ubiquiti AP administration.
+
+#### web
+
+This is the main website for 4Lambda written in pure Python.
+
+### License & Copyright
+
+MIT
+Copyright 2018 4Lambda LLC; Russell Bunch
