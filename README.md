@@ -7,13 +7,13 @@ Kubernetes/GCP Continuous Delivery files.
 
 1. Deploy the applications:
 
-    * `web.yaml`
-    * `rancher.yaml`
-    * `unifi.yaml`
+    * web.yaml
+    * rancher.yaml
+    * unifi.yaml
 
 2. If successful, deploy the ingress for the web and unifi applications:
 
-    * `ingress.yaml`
+    * ingress.yaml
 
 3. Once the ingress is deployed, and it has an target-https-proxy (tps) deployed, update the SSL to include both:
 
