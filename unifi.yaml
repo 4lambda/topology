@@ -30,6 +30,7 @@ spec:
           volumeMounts:
             - name: unifi-4lambda-io-cert-storage
               mountPath: /usr/lib/unifi/cert
+              readOnly: false
             - name: unifi-persistent-data-storage
               mountPath: /usr/lib/unifi/data
             - name: unifi-persistent-logs-storage
@@ -40,14 +41,14 @@ spec:
         - name: unifi-4lambda-io-cert-storage
           secret:
             secretName: unifi-4lambda-io-crt
-            defaultMode: 0700
+            defaultMode: 448
             items:
               - key: tls.crt
                 path: fullchain.pem
-                mode: 0644
+                mode: 420
               - key: tls.key
                 path: privkey.pem
-                mode: 0400
+                mode: 256
         - name: unifi-persistent-data-storage
           gcePersistentDisk:
             pdName: unifi-data-disk
