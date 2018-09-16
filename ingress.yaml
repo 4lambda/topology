@@ -19,10 +19,3 @@ spec:
           serviceName: web-service
           servicePort: 80
         path: /
-  - host: rancher.4lambda.io
-    http:
-      paths:
-      - backend:
-          serviceName: rancher-service
-          servicePort: 80
-        path: /*
