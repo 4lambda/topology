@@ -29,9 +29,9 @@ spec:
               protocol: TCP
           volumeMounts:
             - name: unifi-data-pv
-              mountPath: /usr/lib/unifi/data
+              mountPath: /opt/UniFi/data
             - name: unifi-log-pv
-              mountPath: /usr/lib/unifi/logs
+              mountPath: /opt/UniFi/logs
           imagePullPolicy: Always
       restartPolicy: Always
       volumes:
