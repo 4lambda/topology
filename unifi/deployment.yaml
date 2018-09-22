@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: unifi
-          image: gcr.io/sylvan-triumph-161508/unifi:latest
+          image: gcr.io/sylvan-triumph-161508/unifi:v2.0.0_u5.7.23
           ports:
             - containerPort: 8080
               protocol: TCP

@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: web
-        image: gcr.io/sylvan-triumph-161508/web:v3.0.0
+        image: gcr.io/sylvan-triumph-161508/web:v3.0.0a
         ports:
         - containerPort: 8080
           protocol: TCP
