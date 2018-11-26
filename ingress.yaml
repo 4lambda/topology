@@ -5,7 +5,7 @@ metadata:
   name: primary-ingress
   annotations:
     kubernetes.io/ingress.global-static-ip-name: ip-usc
-    ingress.gcp.kubernetes.io/pre-shared-cert: www-4lambda-io
+    ingress.gcp.kubernetes.io/pre-shared-cert: 'www-4lambda-io,rancher-4lambda-io'
 spec:
   backend:
     serviceName: web-service
