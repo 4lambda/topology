@@ -1,0 +1,15 @@
+apiVersion: cert-manager.io/v1
+kind: ClusterIssuer
+metadata:
+  name: web
+  namespace: services
+spec:
+  acme:
+    email: rusty@4lambda.io
+    server: https://acme-v02.api.letsencrypt.org/directory
+    privateKeySecretRef:
+      name: web-issuer-account-key
+    solvers:
+    - http01:
+        ingress:
+          class: nginx

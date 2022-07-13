@@ -1,0 +1,36 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+     cert-manager.io/issuer: web
+     cert-manager.io/issuer-kind: ClusterIssuer
+  name: web
+  namespace: services
+spec:
+  rules:
+  - host: 4lambda.io
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: web-service
+            port:
+              number: 80
+  - host: www.4lambda.io
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: web-service
+            port:
+              number: 80
+  ingressClassName: nginx
+  tls:
+  - hosts:
+    - 4lambda.io
+    - www.4lambda.io
+    secretName: tls-web-ingress
